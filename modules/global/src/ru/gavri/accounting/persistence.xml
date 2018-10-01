@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="Accounting"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>ru.gavri.accounting.entity.CpuEntity</class>
+        <class>ru.gavri.accounting.entity.DisplayEntity</class>
+        <class>ru.gavri.accounting.entity.HddEntity</class>
+        <class>ru.gavri.accounting.entity.NetworkInterfaceEntity</class>
+        <class>ru.gavri.accounting.entity.PkEntity</class>
+    </persistence-unit>
+</persistence>

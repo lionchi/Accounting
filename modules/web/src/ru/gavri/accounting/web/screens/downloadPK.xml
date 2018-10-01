@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="ru.gavri.accounting.web.screens.Downloadpk"
+        messagesPack="ru.gavri.accounting.web.screens">
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true">
+        <upload id="uploadFile"
+                showClearButton="true"
+                showFileName="true"/>
+    </layout>
+</window>

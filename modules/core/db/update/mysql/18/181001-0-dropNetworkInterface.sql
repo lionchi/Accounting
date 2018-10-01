@@ -1,0 +1,1 @@
+rename table accounting_network_interface to ACCOUNTING_NETWORK_INTERFACE__U08647 ;
