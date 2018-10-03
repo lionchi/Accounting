@@ -2,4 +2,24 @@
 <screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
     <screen id="downloadPK"
             template="ru/gavri/accounting/web/screens/downloadPK.xml"/>
+    <screen id="accounting$PkEntity.browse"
+            template="ru/gavri/accounting/web/pkentity/pk-entity-browse.xml"/>
+    <screen id="accounting$PkEntity.edit"
+            template="ru/gavri/accounting/web/pkentity/pk-entity-edit.xml"/>
+    <screen id="accounting$CpuEntity.browse"
+            template="ru/gavri/accounting/web/cpuentity/cpu-entity-browse.xml"/>
+    <screen id="accounting$CpuEntity.edit"
+            template="ru/gavri/accounting/web/cpuentity/cpu-entity-edit.xml"/>
+    <screen id="accounting$DisplayEntity.browse"
+            template="ru/gavri/accounting/web/displayentity/display-entity-browse.xml"/>
+    <screen id="accounting$DisplayEntity.edit"
+            template="ru/gavri/accounting/web/displayentity/display-entity-edit.xml"/>
+    <screen id="accounting$NetworkInterfaceEntity.browse"
+            template="ru/gavri/accounting/web/networkinterfaceentity/network-interface-entity-browse.xml"/>
+    <screen id="accounting$NetworkInterfaceEntity.edit"
+            template="ru/gavri/accounting/web/networkinterfaceentity/network-interface-entity-edit.xml"/>
+    <screen id="accounting$HddEntity.browse"
+            template="ru/gavri/accounting/web/hddentity/hdd-entity-browse.xml"/>
+    <screen id="accounting$HddEntity.edit"
+            template="ru/gavri/accounting/web/hddentity/hdd-entity-edit.xml"/>
 </screen-config>

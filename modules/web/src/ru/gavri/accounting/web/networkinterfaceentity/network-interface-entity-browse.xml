@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.networkinterfaceentity.NetworkInterfaceEntityBrowse"
+        focusComponent="networkInterfaceEntitiesTable"
+        lookupComponent="networkInterfaceEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.networkinterfaceentity">
+    <dsContext>
+        <groupDatasource id="networkInterfaceEntitiesDs"
+                         class="ru.gavri.accounting.entity.NetworkInterfaceEntity"
+                         view="networkInterfaceEntity-view">
+            <query>
+                <![CDATA[select e from accounting$NetworkInterfaceEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="networkInterfaceEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="networkInterfaceEntitiesTable"
+                datasource="networkInterfaceEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="networkInterfaceEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="nameInterface"/>
+                <column id="macAddress"/>
+                <column id="ipv4"/>
+                <column id="ipv6"/>
+                <column id="traffic"/>
+                <column id="pk"/>
+            </columns>
+            <rows datasource="networkInterfaceEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="networkInterfaceEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="networkInterfaceEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="networkInterfaceEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="networkInterfaceEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

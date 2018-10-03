@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.cpuentity.CpuEntityBrowse"
+        focusComponent="cpuEntitiesTable"
+        lookupComponent="cpuEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.cpuentity">
+    <dsContext>
+        <groupDatasource id="cpuEntitiesDs"
+                         class="ru.gavri.accounting.entity.CpuEntity"
+                         view="cpuEntity-view">
+            <query>
+                <![CDATA[select e from accounting$CpuEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="cpuEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="cpuEntitiesTable"
+                datasource="cpuEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="cpuEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="nameCpu"/>
+                <column id="logicalProcessorCount"/>
+                <column id="physicalProcessorCount"/>
+                <column id="identifier"/>
+                <column id="processorID"/>
+                <column id="pk"/>
+            </columns>
+            <rows datasource="cpuEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="cpuEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="cpuEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="cpuEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="cpuEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

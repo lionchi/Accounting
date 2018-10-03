@@ -1,0 +1,1 @@
+alter table ACCOUNTING_PK_ENTITY drop foreign key FK_ACCOUNTING_PK_ENTITY_ON_CPU;

@@ -1,4 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
-
+    <view class="ru.gavri.accounting.entity.PkEntity"
+          extends="_local"
+          name="pkEntity-view">
+        <property name="cpu"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.CpuEntity"
+          extends="_local"
+          name="cpuEntity-view">
+        <property name="pk"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.DisplayEntity"
+          extends="_local"
+          name="displayEntity-view">
+        <property name="pk"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.HddEntity"
+          name="hddEntity-view">
+        <property name="model"/>
+        <property name="serialNumber"/>
+        <property name="size"/>
+        <property name="isFormatted"/>
+        <property name="pk"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.NetworkInterfaceEntity"
+          extends="_local"
+          name="networkInterfaceEntity-view">
+        <property name="pk"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.HddEntity"
+          name="hddEntity-view-logging">
+        <property name="model"/>
+        <property name="size"/>
+        <property name="isFormatted"/>
+        <property name="dateOfFormatting"/>
+        <property name="pk"
+                  view="_minimal"/>
+    </view>
 </views>

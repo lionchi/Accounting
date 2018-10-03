@@ -3,7 +3,7 @@ create table ACCOUNTING_CPU_ENTITY (
     ID bigint,
     UUID varchar(32),
     --
-    NAME varchar(255),
+    NAME_CPU varchar(255),
     LOGICAL_PROCESSOR_COUNT integer,
     PHYSICAL_PROCESSOR_COUNT integer,
     IDENTIFIER varchar(100),
@@ -18,7 +18,7 @@ create table ACCOUNTING_DISPLAY_ENTITY (
     UUID varchar(32),
     --
     MANUF_ID varchar(100),
-    NAME varchar(100),
+    NAME_DISPLAY varchar(100),
     DIAGONAL varchar(50),
     PK_ID bigint,
     --
@@ -45,7 +45,7 @@ create table ACCOUNTING_NETWORK_INTERFACE_ENTITY (
     ID bigint,
     UUID varchar(32),
     --
-    NAME varchar(255),
+    NAME_INTERFACE varchar(255),
     MAC_ADDRESS varchar(100),
     IPV4 longtext,
     IPV6 longtext,
@@ -60,6 +60,8 @@ create table ACCOUNTING_PK_ENTITY (
     ID bigint,
     UUID varchar(32),
     --
+    SERIAL_NUMBER_PK varchar(100) not null,
+    IS_LAPTOP boolean,
     VERSION_BIOS varchar(100),
     MOTHERBOARD_MANUFACTURER varchar(150),
     MOTHERBOARD_SERIAL_NUMBER varchar(150),

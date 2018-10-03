@@ -1,0 +1,1 @@
+alter table ACCOUNTING_HDD_ENTITY drop foreign key FK_ACCOUNTING_HDD_ENTITY_ON_PK;

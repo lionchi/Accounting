@@ -13,8 +13,10 @@ import com.haulmont.cuba.core.entity.annotation.LookupType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
-@NamePattern("%s|name")
+@NamePattern("%s|nameInterface")
 @Table(name = "ACCOUNTING_NETWORK_INTERFACE_ENTITY")
 @Entity(name = "accounting$NetworkInterfaceEntity")
 public class NetworkInterfaceEntity extends BaseLongIdEntity implements HasUuid {
@@ -23,8 +25,8 @@ public class NetworkInterfaceEntity extends BaseLongIdEntity implements HasUuid 
     @Column(name = "UUID")
     protected UUID uuid;
 
-    @Column(name = "NAME")
-    protected String name;
+    @Column(name = "NAME_INTERFACE")
+    protected String nameInterface;
 
     @Column(name = "MAC_ADDRESS", length = 100)
     protected String macAddress;
@@ -41,10 +43,20 @@ public class NetworkInterfaceEntity extends BaseLongIdEntity implements HasUuid 
     @Column(name = "TRAFFIC")
     protected String traffic;
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PK_ID")
     protected PkEntity pk;
+
+    public void setNameInterface(String nameInterface) {
+        this.nameInterface = nameInterface;
+    }
+
+    public String getNameInterface() {
+        return nameInterface;
+    }
+
 
     public PkEntity getPk() {
         return pk;
@@ -62,14 +74,6 @@ public class NetworkInterfaceEntity extends BaseLongIdEntity implements HasUuid 
 
     public UUID getUuid() {
         return uuid;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setMacAddress(String macAddress) {

@@ -1,0 +1,1 @@
+alter table ACCOUNTING_NETWORK_INTERFACE_ENTITY drop column NAME__U01329 cascade ;

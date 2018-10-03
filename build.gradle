@@ -92,6 +92,8 @@ configure(coreModule) {
         provided(servletApi)
         jdbc(mysql)
         testRuntime(mysql)
+        compile('com.fasterxml.jackson.core:jackson-databind:2.9.6')
+        compile('com.fasterxml.jackson.core:jackson-core:2.9.5')
 
     }
 
@@ -138,6 +140,8 @@ configure(webModule) {
     dependencies {
         provided(servletApi)
         compile(globalModule)
+        compile('com.fasterxml.jackson.core:jackson-databind:2.9.6')
+        compile('com.fasterxml.jackson.core:jackson-core:2.9.5')
 
     }
     

@@ -1,0 +1,1 @@
+alter table ACCOUNTING_DISPLAY_ENTITY add constraint FK_ACCOUNTING_DISPLAY_ENTITY_ON_PK foreign key (PK_ID) references ACCOUNTING_PK_ENTITY(ID) on delete SET NULL;

@@ -2,6 +2,16 @@
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-accounting"
           insertBefore="administration">
+        <item screen="accounting$PkEntity.browse"/>
+        <item screen="accounting$CpuEntity.browse"/>
+        <item screen="accounting$HddEntity.browse"/>
+        <item screen="accounting$DisplayEntity.browse"/>
+        <item screen="accounting$NetworkInterfaceEntity.browse"/>
+    </menu>
+    <menu id="application-logging"
+          insertBefore="administration"/>
+    <menu id="application-download"
+          insertBefore="administration">
         <item screen="downloadPK"/>
     </menu>
 </menu-config>

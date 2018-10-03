@@ -1,7 +1,9 @@
 package ru.gavri.accounting.service;
 
+import java.util.Scanner;
+
 public interface DownloadPKService {
     String NAME = "accounting_DownloadPKService";
 
-    void downloadPK(Object object);
+    Long downloadPK(String jsonStr);
 }

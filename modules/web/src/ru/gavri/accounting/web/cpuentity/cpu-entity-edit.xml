@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.gavri.accounting.web.cpuentity.CpuEntityEdit"
+        datasource="cpuEntityDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.gavri.accounting.web.cpuentity">
+    <dsContext>
+        <datasource id="cpuEntityDs"
+                    class="ru.gavri.accounting.entity.CpuEntity"
+                    view="cpuEntity-view"/>
+        <collectionDatasource id="pksDs"
+                              class="ru.gavri.accounting.entity.PkEntity"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from accounting$PkEntity e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="cpuEntityDs">
+            <column width="250px">
+                <field property="nameCpu"/>
+                <field property="logicalProcessorCount"/>
+                <field property="physicalProcessorCount"/>
+                <field property="identifier"/>
+                <field property="processorID"/>
+                <field optionsDatasource="pksDs"
+                       property="pk"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

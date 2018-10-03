@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.pkentity.PkEntityBrowse"
+        focusComponent="pkEntitiesTable"
+        lookupComponent="pkEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.pkentity">
+    <dsContext>
+        <groupDatasource id="pkEntitiesDs"
+                         class="ru.gavri.accounting.entity.PkEntity"
+                         view="pkEntity-view">
+            <query>
+                <![CDATA[select e from accounting$PkEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="pkEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="pkEntitiesTable"
+                datasource="pkEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="pkEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="serialNumberPk"/>
+                <column id="isLaptop"/>
+                <column id="cpu"/>
+                <column id="motherboardManufacturer"/>
+                <column id="motherboardSerialNumber"/>
+                <column id="versionBios"/>
+            </columns>
+            <rows datasource="pkEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="pkEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="pkEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="pkEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="pkEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.gavri.accounting.web.pkentity.PkEntityEdit"
+        datasource="pkEntityDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.gavri.accounting.web.pkentity">
+    <dsContext>
+        <datasource id="pkEntityDs"
+                    class="ru.gavri.accounting.entity.PkEntity"
+                    view="pkEntity-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="pkEntityDs">
+            <column width="250px">
+                <field property="name"/>
+                <field property="serialNumberPk"/>
+                <field property="isLaptop"/>
+                <field property="motherboardManufacturer"/>
+                <field property="motherboardSerialNumber"/>
+                <field property="versionBios"/>
+                <field property="cpu"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

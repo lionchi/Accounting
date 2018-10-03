@@ -12,8 +12,10 @@ import com.haulmont.cuba.core.entity.annotation.LookupType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
-@NamePattern("%s|name")
+@NamePattern("%s|nameDisplay")
 @Table(name = "ACCOUNTING_DISPLAY_ENTITY")
 @Entity(name = "accounting$DisplayEntity")
 public class DisplayEntity extends BaseLongIdEntity implements HasUuid {
@@ -25,16 +27,26 @@ public class DisplayEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "MANUF_ID", length = 100)
     protected String manufId;
 
-    @Column(name = "NAME", length = 100)
-    protected String name;
+    @Column(name = "NAME_DISPLAY", length = 100)
+    protected String nameDisplay;
 
     @Column(name = "DIAGONAL", length = 50)
     protected String diagonal;
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PK_ID")
     protected PkEntity pk;
+
+    public void setNameDisplay(String nameDisplay) {
+        this.nameDisplay = nameDisplay;
+    }
+
+    public String getNameDisplay() {
+        return nameDisplay;
+    }
+
 
     public PkEntity getPk() {
         return pk;
@@ -60,14 +72,6 @@ public class DisplayEntity extends BaseLongIdEntity implements HasUuid {
 
     public String getManufId() {
         return manufId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setDiagonal(String diagonal) {

@@ -11,8 +11,10 @@ import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
-@NamePattern("%s|name")
+@NamePattern("%s|nameCpu")
 @Table(name = "ACCOUNTING_CPU_ENTITY")
 @Entity(name = "accounting$CpuEntity")
 public class CpuEntity extends BaseLongIdEntity implements HasUuid {
@@ -21,8 +23,8 @@ public class CpuEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "UUID")
     protected UUID uuid;
 
-    @Column(name = "NAME")
-    protected String name;
+    @Column(name = "NAME_CPU")
+    protected String nameCpu;
 
     @Column(name = "LOGICAL_PROCESSOR_COUNT")
     protected Integer logicalProcessorCount;
@@ -36,9 +38,19 @@ public class CpuEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "PROCESSOR_ID", length = 100)
     protected String processorID;
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "cpu")
     protected PkEntity pk;
+
+    public void setNameCpu(String nameCpu) {
+        this.nameCpu = nameCpu;
+    }
+
+    public String getNameCpu() {
+        return nameCpu;
+    }
+
 
     public PkEntity getPk() {
         return pk;
@@ -56,14 +68,6 @@ public class CpuEntity extends BaseLongIdEntity implements HasUuid {
 
     public UUID getUuid() {
         return uuid;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setLogicalProcessorCount(Integer logicalProcessorCount) {

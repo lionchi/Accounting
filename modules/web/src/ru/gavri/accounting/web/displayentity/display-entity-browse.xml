@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.displayentity.DisplayEntityBrowse"
+        focusComponent="displayEntitiesTable"
+        lookupComponent="displayEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.displayentity">
+    <dsContext>
+        <groupDatasource id="displayEntitiesDs"
+                         class="ru.gavri.accounting.entity.DisplayEntity"
+                         view="displayEntity-view">
+            <query>
+                <![CDATA[select e from accounting$DisplayEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="displayEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="displayEntitiesTable"
+                datasource="displayEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="displayEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="nameDisplay"/>
+                <column id="diagonal"/>
+                <column id="manufId"/>
+                <column id="pk"/>
+            </columns>
+            <rows datasource="displayEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="displayEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="displayEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="displayEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="displayEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -10,6 +10,8 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 @NamePattern("%s (%s)|model,serialNumber")
 @Table(name = "ACCOUNTING_HDD_ENTITY")
@@ -35,6 +37,7 @@ public class HddEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "DATE_OF_FORMATTING", length = 50)
     protected String dateOfFormatting;
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PK_ID")
     protected PkEntity pk;

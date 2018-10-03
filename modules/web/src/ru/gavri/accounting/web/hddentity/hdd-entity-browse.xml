@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.hddentity.HddEntityBrowse"
+        focusComponent="hddEntitiesTable"
+        lookupComponent="hddEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.hddentity">
+    <dsContext>
+        <groupDatasource id="hddEntitiesDs"
+                         class="ru.gavri.accounting.entity.HddEntity"
+                         view="hddEntity-view">
+            <query>
+                <![CDATA[select e from accounting$HddEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="hddEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="hddEntitiesTable"
+                datasource="hddEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="hddEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="model"/>
+                <column id="serialNumber"/>
+                <column id="size"/>
+                <column id="isFormatted"/>
+                <column id="pk"/>
+            </columns>
+            <rows datasource="hddEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="hddEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="hddEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="hddEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

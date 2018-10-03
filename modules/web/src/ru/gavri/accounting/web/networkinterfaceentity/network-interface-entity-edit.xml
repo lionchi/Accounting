@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.gavri.accounting.web.networkinterfaceentity.NetworkInterfaceEntityEdit"
+        datasource="networkInterfaceEntityDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.gavri.accounting.web.networkinterfaceentity">
+    <dsContext>
+        <datasource id="networkInterfaceEntityDs"
+                    class="ru.gavri.accounting.entity.NetworkInterfaceEntity"
+                    view="networkInterfaceEntity-view"/>
+        <collectionDatasource id="pksDs"
+                              class="ru.gavri.accounting.entity.PkEntity"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from accounting$PkEntity e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="networkInterfaceEntityDs">
+            <column width="250px">
+                <field property="nameInterface"/>
+                <field property="macAddress"/>
+                <field property="ipv4"
+                       rows="5"/>
+                <field property="ipv6"
+                       rows="5"/>
+                <field property="traffic"
+                       rows="5"/>
+                <field optionsDatasource="pksDs"
+                       property="pk"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

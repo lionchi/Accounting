@@ -5,7 +5,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import java.util.ArrayList;
 
 public class PK {
-    public transient static final PK INSTANCE = new PK();
+    private String serialNumberPk;
     private String versionBios;
     private transient String versionOs;
     private String motherboardManufacturer;
@@ -22,9 +22,10 @@ public class PK {
     public PK() {
     }
 
-    public PK(String versionBios, String versionOs, String motherboardManufacturer, String motherboardSerialNumber,
+    public PK(String serialNumberPk, String versionBios, String versionOs, String motherboardManufacturer, String motherboardSerialNumber,
               String nameHost, String nameDomain, String dnsServers, boolean isLaptop, CPU cpu, ArrayList<HDD> hardDisks,
               ArrayList<NetworkInterface> networkInterfaces, ArrayList<Display> displays) {
+        this.serialNumberPk = serialNumberPk;
         this.versionBios = versionBios;
         this.versionOs = versionOs;
         this.motherboardManufacturer = motherboardManufacturer;
@@ -42,6 +43,14 @@ public class PK {
     public boolean canSave() {
         return ObjectUtils.allNotNull(versionBios, motherboardManufacturer, motherboardSerialNumber, cpu, hardDisks)
                 && hardDisks.size() > 0;
+    }
+
+    public String getSerialNumberPk() {
+        return serialNumberPk;
+    }
+
+    public void setSerialNumberPk(String serialNumberPk) {
+        this.serialNumberPk = serialNumberPk;
     }
 
     public String getVersionBios() {

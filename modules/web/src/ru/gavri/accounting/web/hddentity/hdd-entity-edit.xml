@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.gavri.accounting.web.hddentity.HddEntityEdit"
+        datasource="hddEntityDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.gavri.accounting.web.hddentity">
+    <dsContext>
+        <datasource id="hddEntityDs"
+                    class="ru.gavri.accounting.entity.HddEntity"
+                    view="hddEntity-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="hddEntityDs">
+            <column width="250px">
+                <field property="model"/>
+                <field property="serialNumber"/>
+                <field property="size"/>
+                <field property="isFormatted"/>
+                <field property="pk"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
