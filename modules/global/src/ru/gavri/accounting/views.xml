@@ -50,4 +50,25 @@
         <property name="pk"
                   view="_minimal"/>
     </view>
+    <view class="ru.gavri.accounting.entity.VideoCardEntity"
+          name="videoCardEntity-view">
+        <property name="cardName"/>
+        <property name="currentMode"/>
+        <property name="driverVersion"/>
+        <property name="deviceProblemCode"/>
+        <property name="chipType"/>
+        <property name="pkEntity"
+                  view="_minimal"/>
+        <property name="deviceKey"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.VideoCardEntity"
+          name="videoCardEntity-withoutKey-view">
+        <property name="cardName"/>
+        <property name="currentMode"/>
+        <property name="driverVersion"/>
+        <property name="deviceProblemCode"/>
+        <property name="chipType"/>
+        <property name="pkEntity"
+                  view="_minimal"/>
+    </view>
 </views>

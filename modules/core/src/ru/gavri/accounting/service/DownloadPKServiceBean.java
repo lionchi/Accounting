@@ -6,10 +6,7 @@ import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.global.Metadata;
 import org.springframework.stereotype.Service;
-import ru.gavri.accounting.dto.Display;
-import ru.gavri.accounting.dto.HDD;
-import ru.gavri.accounting.dto.NetworkInterface;
-import ru.gavri.accounting.dto.PK;
+import ru.gavri.accounting.dto.*;
 import ru.gavri.accounting.entity.*;
 import ru.gavri.accounting.exceptions.DownloadJsonFileException;
 
@@ -17,6 +14,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service(DownloadPKService.NAME)
 public class DownloadPKServiceBean implements DownloadPKService {
@@ -70,6 +68,10 @@ public class DownloadPKServiceBean implements DownloadPKService {
             cpuEntity.setPk(newPk);
             entityManager.persist(cpuEntity);
             newPk.setCpu(cpuEntity);
+            //Создание списка Видеокарт
+            if (pk.getVideoCards() != null && pk.getVideoCards().size() > 0) {
+                newPk.setVideoCards(createListVideoCard(pk.getVideoCards(), entityManager, newPk));
+            }
             //Создание списка HDD
             if (pk.getHardDisks() != null && pk.getHardDisks().size() > 0) {
                 newPk.setHardDisks(createListHdd(pk.getHardDisks(), entityManager, newPk));
@@ -86,6 +88,23 @@ public class DownloadPKServiceBean implements DownloadPKService {
             transaction.commit();
             return newPk.getId();
         }
+    }
+
+    private List<VideoCardEntity> createListVideoCard(ArrayList<VideoCard> videoCards, EntityManager entityManager, PkEntity newPk) {
+        ArrayList<VideoCardEntity> videoCardEntities = new ArrayList<>();
+        for (VideoCard videoCard : videoCards) {
+            VideoCardEntity hddEntity = metadata.create(VideoCardEntity.class);
+            hddEntity.setDriverVersion(videoCard.getDriverVersion());
+            hddEntity.setCardName(videoCard.getCardName());
+            hddEntity.setChipType(videoCard.getChipType());
+            hddEntity.setCurrentMode(videoCard.getCurrentMode().equals("Unknown") ? "" : videoCard.getCurrentMode());
+            hddEntity.setDeviceKey(videoCard.getDeviceKey());
+            hddEntity.setDeviceProblemCode(videoCard.getDeviceProblemCode().equals("No Problem") ? "Нет" : videoCard.getDeviceProblemCode());
+            hddEntity.setPkEntity(newPk);
+            entityManager.persist(hddEntity);
+            videoCardEntities.add(hddEntity);
+        }
+        return videoCardEntities;
     }
 
     private ArrayList<HddEntity> createListHdd(ArrayList<HDD> hdds, EntityManager entityManager, PkEntity newPk) {

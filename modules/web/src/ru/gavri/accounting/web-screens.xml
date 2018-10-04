@@ -22,4 +22,12 @@
             template="ru/gavri/accounting/web/hddentity/hdd-entity-edit.xml"/>
     <screen id="accounting$PkEntity.edit"
             template="ru/gavri/accounting/web/pkentity/pk-entity-edit.xml"/>
+    <screen id="accounting$MotherboardEntity.browse"
+            template="ru/gavri/accounting/web/motherboardentity/motherboard-entity-browse.xml"/>
+    <screen id="accounting$MotherboardEntity.edit"
+            template="ru/gavri/accounting/web/motherboardentity/motherboard-entity-edit.xml"/>
+    <screen id="accounting$VideoCardEntity.browse"
+            template="ru/gavri/accounting/web/videocardentity/video-card-entity-browse.xml"/>
+    <screen id="accounting$VideoCardEntity.edit"
+            template="ru/gavri/accounting/web/videocardentity/video-card-entity-edit.xml"/>
 </screen-config>

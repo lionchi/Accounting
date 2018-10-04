@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.videocardentity.VideoCardEntityBrowse"
+        focusComponent="videoCardEntitiesTable"
+        lookupComponent="videoCardEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.videocardentity">
+    <dsContext>
+        <groupDatasource id="videoCardEntitiesDs"
+                         class="ru.gavri.accounting.entity.VideoCardEntity"
+                         view="videoCardEntity-view">
+            <query>
+                <![CDATA[select e from accounting$VideoCardEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="videoCardEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="videoCardEntitiesTable"
+                datasource="videoCardEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="videoCardEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="edit"/>
+                <action id="create"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="cardName"/>
+                <column id="currentMode"/>
+                <column id="driverVersion"/>
+                <column id="deviceProblemCode"/>
+                <column id="chipType"/>
+                <column id="deviceKey"/>
+                <column id="pkEntity"/>
+            </columns>
+            <rows datasource="videoCardEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="videoCardEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="videoCardEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="videoCardEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="videoCardEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

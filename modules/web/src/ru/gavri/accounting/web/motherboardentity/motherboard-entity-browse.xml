@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.motherboardentity.MotherboardEntityBrowse"
+        focusComponent="motherboardEntitiesTable"
+        lookupComponent="motherboardEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.motherboardentity">
+    <dsContext>
+        <groupDatasource id="motherboardEntitiesDs"
+                         class="ru.gavri.accounting.entity.MotherboardEntity"
+                         view="motherboardEntity-view">
+            <query>
+                <![CDATA[select e from accounting$MotherboardEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="motherboardEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="motherboardEntitiesTable"
+                datasource="motherboardEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="motherboardEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="refresh"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="motherboardManufacturer"/>
+                <column id="motherboardSerialNumber"/>
+                <column id="versionBios"/>
+                <column id="pk"/>
+            </columns>
+            <rows datasource="motherboardEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="motherboardEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="motherboardEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="motherboardEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="motherboardEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

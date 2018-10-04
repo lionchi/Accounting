@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.gavri.accounting.web.videocardentity.VideoCardEntityEdit"
+        datasource="videoCardEntityDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.gavri.accounting.web.videocardentity">
+    <dsContext>
+        <datasource id="videoCardEntityDs"
+                    class="ru.gavri.accounting.entity.VideoCardEntity"
+                    view="videoCardEntity-withoutKey-view"/>
+        <collectionDatasource id="pkEntitiesDs"
+                              class="ru.gavri.accounting.entity.PkEntity"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from accounting$PkEntity e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="videoCardEntityDs">
+            <column width="250px">
+                <field property="cardName"/>
+                <field property="currentMode"/>
+                <field property="driverVersion"/>
+                <field property="deviceProblemCode"/>
+                <field property="chipType"/>
+                <field optionsDatasource="pkEntitiesDs"
+                       property="pkEntity"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

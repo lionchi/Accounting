@@ -28,6 +28,10 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     protected UUID uuid;
 
 
+    @OnDeleteInverse(DeletePolicy.UNLINK)
+    @OneToMany(mappedBy = "pkEntity")
+    protected List<VideoCardEntity> videoCards;
+
     @Column(name = "MODEL_PK", length = 50)
     protected String modelPk;
 
@@ -78,6 +82,15 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pk")
     protected MotherboardEntity motherboardEntity;
+
+    public void setVideoCards(List<VideoCardEntity> videoCards) {
+        this.videoCards = videoCards;
+    }
+
+    public List<VideoCardEntity> getVideoCards() {
+        return videoCards;
+    }
+
 
     public void setModelPk(String modelPk) {
         this.modelPk = modelPk;
