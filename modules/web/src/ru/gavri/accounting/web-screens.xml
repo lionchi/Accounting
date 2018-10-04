@@ -4,8 +4,6 @@
             template="ru/gavri/accounting/web/screens/downloadPK.xml"/>
     <screen id="accounting$PkEntity.browse"
             template="ru/gavri/accounting/web/pkentity/pk-entity-browse.xml"/>
-    <screen id="accounting$PkEntity.edit"
-            template="ru/gavri/accounting/web/pkentity/pk-entity-edit.xml"/>
     <screen id="accounting$CpuEntity.browse"
             template="ru/gavri/accounting/web/cpuentity/cpu-entity-browse.xml"/>
     <screen id="accounting$CpuEntity.edit"
@@ -22,4 +20,6 @@
             template="ru/gavri/accounting/web/hddentity/hdd-entity-browse.xml"/>
     <screen id="accounting$HddEntity.edit"
             template="ru/gavri/accounting/web/hddentity/hdd-entity-edit.xml"/>
+    <screen id="accounting$PkEntity.edit"
+            template="ru/gavri/accounting/web/pkentity/pk-entity-edit.xml"/>
 </screen-config>

@@ -60,14 +60,28 @@ create table ACCOUNTING_PK_ENTITY (
     ID bigint,
     UUID varchar(32),
     --
-    SERIAL_NUMBER_PK varchar(100) not null,
+    MODEL_PK varchar(50),
+    SERIAL_NUMBER_PK varchar(100),
+    MANUFACTURE varchar(255),
+    LOCATION varchar(100),
+    INVENTORY_NUMBER varchar(100) not null,
     IS_LAPTOP boolean,
-    VERSION_BIOS varchar(100),
-    MOTHERBOARD_MANUFACTURER varchar(150),
-    MOTHERBOARD_SERIAL_NUMBER varchar(150),
     CPU_ID bigint,
     NAME varchar(100),
     --
     primary key (ID)
 )^
 -- end ACCOUNTING_PK_ENTITY
+-- begin ACCOUNTING_MOTHERBOARD_ENTITY
+create table ACCOUNTING_MOTHERBOARD_ENTITY (
+    ID bigint,
+    UUID varchar(32),
+    --
+    VERSION_BIOS varchar(100),
+    MOTHERBOARD_MANUFACTURER varchar(100),
+    MOTHERBOARD_SERIAL_NUMBER varchar(100),
+    PK_ID bigint,
+    --
+    primary key (ID)
+)^
+-- end ACCOUNTING_MOTHERBOARD_ENTITY

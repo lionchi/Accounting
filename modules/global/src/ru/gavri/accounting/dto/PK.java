@@ -5,15 +5,19 @@ import org.apache.commons.lang3.ObjectUtils;
 import java.util.ArrayList;
 
 public class PK {
+    private String inventoryNumber;
+    private String location;
+    private boolean isLaptop;
     private String serialNumberPk;
+    private String modelPk;
+    private String manufacture;
     private String versionBios;
-    private transient String versionOs;
+    private String versionOs;
     private String motherboardManufacturer;
     private String motherboardSerialNumber;
-    private transient String nameHost;
-    private transient String nameDomain;
-    private transient String dnsServers;
-    private transient boolean isLaptop = false;
+    private String nameHost;
+    private String nameDomain;
+    private String dnsServers;
     private CPU cpu;
     private ArrayList<HDD> hardDisks;
     private ArrayList<NetworkInterface> networkInterfaces;
@@ -22,27 +26,25 @@ public class PK {
     public PK() {
     }
 
-    public PK(String serialNumberPk, String versionBios, String versionOs, String motherboardManufacturer, String motherboardSerialNumber,
-              String nameHost, String nameDomain, String dnsServers, boolean isLaptop, CPU cpu, ArrayList<HDD> hardDisks,
-              ArrayList<NetworkInterface> networkInterfaces, ArrayList<Display> displays) {
-        this.serialNumberPk = serialNumberPk;
-        this.versionBios = versionBios;
-        this.versionOs = versionOs;
-        this.motherboardManufacturer = motherboardManufacturer;
-        this.motherboardSerialNumber = motherboardSerialNumber;
-        this.nameHost = nameHost;
-        this.nameDomain = nameDomain;
-        this.dnsServers = dnsServers;
-        this.isLaptop = isLaptop;
-        this.cpu = cpu;
-        this.hardDisks = hardDisks;
-        this.networkInterfaces = networkInterfaces;
-        this.displays = displays;
-    }
-
     public boolean canSave() {
         return ObjectUtils.allNotNull(versionBios, motherboardManufacturer, motherboardSerialNumber, cpu, hardDisks)
                 && hardDisks.size() > 0;
+    }
+
+    public String getInventoryNumber() {
+        return inventoryNumber;
+    }
+
+    public void setInventoryNumber(String inventoryNumber) {
+        this.inventoryNumber = inventoryNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getSerialNumberPk() {
@@ -51,6 +53,22 @@ public class PK {
 
     public void setSerialNumberPk(String serialNumberPk) {
         this.serialNumberPk = serialNumberPk;
+    }
+
+    public String getModelPk() {
+        return modelPk;
+    }
+
+    public void setModelPk(String modelPk) {
+        this.modelPk = modelPk;
+    }
+
+    public String getManufacture() {
+        return manufacture;
+    }
+
+    public void setManufacture(String manufacture) {
+        this.manufacture = manufacture;
     }
 
     public String getVersionBios() {

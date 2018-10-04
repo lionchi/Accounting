@@ -46,11 +46,20 @@ public class DownloadPKServiceBean implements DownloadPKService {
             //Создание ПК
             PkEntity newPk = metadata.create(PkEntity.class);
             newPk.setName(String.format("ПК №%d", newPk.getId()));
-            newPk.setSerialNumberPk(pk.getSerialNumberPk());
+            newPk.setInventoryNumber(pk.getInventoryNumber());
             newPk.setIsLaptop(pk.isLaptop());
-            newPk.setVersionBios(pk.getVersionBios());
-            newPk.setMotherboardManufacturer(pk.getMotherboardManufacturer());
-            newPk.setMotherboardSerialNumber(pk.getMotherboardSerialNumber());
+            newPk.setLocation(pk.getLocation());
+            newPk.setModelPk(pk.getModelPk());
+            newPk.setSerialNumberPk(pk.getSerialNumberPk().equals("Default string") ? "" : pk.getSerialNumberPk());
+            newPk.setManufacture(pk.getManufacture());
+            //Создание МП
+            MotherboardEntity motherboardEntity = metadata.create(MotherboardEntity.class);
+            motherboardEntity.setVersionBios(pk.getVersionBios());
+            motherboardEntity.setMotherboardManufacturer(pk.getMotherboardManufacturer());
+            motherboardEntity.setMotherboardSerialNumber(pk.getMotherboardSerialNumber());
+            motherboardEntity.setPk(newPk);
+            entityManager.persist(motherboardEntity);
+            newPk.setMotherboardEntity(motherboardEntity);
             //Создание ЦПУ
             CpuEntity cpuEntity = metadata.create(CpuEntity.class);
             cpuEntity.setNameCpu(pk.getCpu().getName());

@@ -18,7 +18,7 @@ import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
 import com.haulmont.cuba.core.global.DeletePolicy;
 import javax.validation.constraints.NotNull;
 
-@NamePattern("%s|name")
+@NamePattern("%s (%s)|name,modelPk")
 @Table(name = "ACCOUNTING_PK_ENTITY")
 @Entity(name = "accounting$PkEntity")
 public class PkEntity extends BaseLongIdEntity implements HasUuid {
@@ -27,21 +27,28 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "UUID")
     protected UUID uuid;
 
-    @NotNull
-    @Column(name = "SERIAL_NUMBER_PK", nullable = false, length = 100)
+
+    @Column(name = "MODEL_PK", length = 50)
+    protected String modelPk;
+
+    @Column(name = "SERIAL_NUMBER_PK", length = 100)
     protected String serialNumberPk;
+
+    @Column(name = "MANUFACTURE")
+    protected String manufacture;
+
+    @Column(name = "LOCATION", length = 100)
+    protected String location;
+
+    @NotNull
+    @Column(name = "INVENTORY_NUMBER", nullable = false, length = 100)
+    protected String inventoryNumber;
 
     @Column(name = "IS_LAPTOP")
     protected Boolean isLaptop;
 
-    @Column(name = "VERSION_BIOS", length = 100)
-    protected String versionBios;
 
-    @Column(name = "MOTHERBOARD_MANUFACTURER", length = 150)
-    protected String motherboardManufacturer;
 
-    @Column(name = "MOTHERBOARD_SERIAL_NUMBER", length = 150)
-    protected String motherboardSerialNumber;
 
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @Lookup(type = LookupType.SCREEN, actions = {"lookup", "open"})
@@ -64,12 +71,63 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     @OneToMany(mappedBy = "pk")
     protected List<NetworkInterfaceEntity> networkInterfaces;
 
+
+
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
+    @OnDeleteInverse(DeletePolicy.UNLINK)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "pk")
+    protected MotherboardEntity motherboardEntity;
+
+    public void setModelPk(String modelPk) {
+        this.modelPk = modelPk;
+    }
+
+    public String getModelPk() {
+        return modelPk;
+    }
+
     public void setSerialNumberPk(String serialNumberPk) {
         this.serialNumberPk = serialNumberPk;
     }
 
     public String getSerialNumberPk() {
         return serialNumberPk;
+    }
+
+    public void setManufacture(String manufacture) {
+        this.manufacture = manufacture;
+    }
+
+    public String getManufacture() {
+        return manufacture;
+    }
+
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+
+    public void setMotherboardEntity(MotherboardEntity motherboardEntity) {
+        this.motherboardEntity = motherboardEntity;
+    }
+
+    public MotherboardEntity getMotherboardEntity() {
+        return motherboardEntity;
+    }
+
+
+    public void setInventoryNumber(String inventoryNumber) {
+        this.inventoryNumber = inventoryNumber;
+    }
+
+    public String getInventoryNumber() {
+        return inventoryNumber;
     }
 
 
@@ -126,29 +184,11 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
         return uuid;
     }
 
-    public void setVersionBios(String versionBios) {
-        this.versionBios = versionBios;
-    }
 
-    public String getVersionBios() {
-        return versionBios;
-    }
 
-    public void setMotherboardManufacturer(String motherboardManufacturer) {
-        this.motherboardManufacturer = motherboardManufacturer;
-    }
 
-    public String getMotherboardManufacturer() {
-        return motherboardManufacturer;
-    }
 
-    public void setMotherboardSerialNumber(String motherboardSerialNumber) {
-        this.motherboardSerialNumber = motherboardSerialNumber;
-    }
 
-    public String getMotherboardSerialNumber() {
-        return motherboardSerialNumber;
-    }
 
     public void setName(String name) {
         this.name = name;

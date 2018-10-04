@@ -10,7 +10,8 @@
                          class="ru.gavri.accounting.entity.DisplayEntity"
                          view="displayEntity-view">
             <query>
-                <![CDATA[select e from accounting$DisplayEntity e]]>
+                <![CDATA[select e from accounting$DisplayEntity e where 
+e.pk.isLaptop = false]]>
             </query>
         </groupDatasource>
     </dsContext>

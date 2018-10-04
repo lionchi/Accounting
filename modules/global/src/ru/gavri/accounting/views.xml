@@ -5,6 +5,8 @@
           name="pkEntity-view">
         <property name="cpu"
                   view="_minimal"/>
+        <property name="motherboardEntity"
+                  view="_minimal"/>
     </view>
     <view class="ru.gavri.accounting.entity.CpuEntity"
           extends="_local"
@@ -39,6 +41,12 @@
         <property name="size"/>
         <property name="isFormatted"/>
         <property name="dateOfFormatting"/>
+        <property name="pk"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.gavri.accounting.entity.MotherboardEntity"
+          extends="_local"
+          name="motherboardEntity-view">
         <property name="pk"
                   view="_minimal"/>
     </view>

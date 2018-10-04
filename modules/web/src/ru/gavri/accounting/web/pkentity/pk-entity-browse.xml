@@ -33,12 +33,14 @@
             </actions>
             <columns>
                 <column id="name"/>
+                <column id="modelPk"/>
+                <column id="manufacture"/>
+                <column id="inventoryNumber"/>
                 <column id="serialNumberPk"/>
+                <column id="location"/>
                 <column id="isLaptop"/>
+                <column id="motherboardEntity"/>
                 <column id="cpu"/>
-                <column id="motherboardManufacturer"/>
-                <column id="motherboardSerialNumber"/>
-                <column id="versionBios"/>
             </columns>
             <rows datasource="pkEntitiesDs"/>
             <rowsCount/>

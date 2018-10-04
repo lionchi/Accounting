@@ -8,5 +8,6 @@
         <class>ru.gavri.accounting.entity.HddEntity</class>
         <class>ru.gavri.accounting.entity.NetworkInterfaceEntity</class>
         <class>ru.gavri.accounting.entity.PkEntity</class>
+        <class>ru.gavri.accounting.entity.MotherboardEntity</class>
     </persistence-unit>
 </persistence>
