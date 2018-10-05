@@ -17,6 +17,7 @@ create table ACCOUNTING_DISPLAY_ENTITY (
     ID bigint,
     UUID varchar(32),
     --
+    DISPLAY_ID varchar(50),
     MANUF_ID varchar(100),
     NAME_DISPLAY varchar(100),
     DIAGONAL varchar(50),

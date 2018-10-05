@@ -24,6 +24,9 @@ public class DisplayEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "UUID")
     protected UUID uuid;
 
+    @Column(name = "DISPLAY_ID", length = 50)
+    protected String displayId;
+
     @Column(name = "MANUF_ID", length = 100)
     protected String manufId;
 
@@ -38,6 +41,15 @@ public class DisplayEntity extends BaseLongIdEntity implements HasUuid {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PK_ID")
     protected PkEntity pk;
+
+    public void setDisplayId(String displayId) {
+        this.displayId = displayId;
+    }
+
+    public String getDisplayId() {
+        return displayId;
+    }
+
 
     public void setNameDisplay(String nameDisplay) {
         this.nameDisplay = nameDisplay;

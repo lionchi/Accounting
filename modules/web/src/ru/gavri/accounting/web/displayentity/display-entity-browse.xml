@@ -36,6 +36,7 @@ e.pk.isLaptop = false]]>
                 <column id="nameDisplay"/>
                 <column id="diagonal"/>
                 <column id="manufId"/>
+                <column id="displayId"/>
                 <column id="pk"/>
             </columns>
             <rows datasource="displayEntitiesDs"/>

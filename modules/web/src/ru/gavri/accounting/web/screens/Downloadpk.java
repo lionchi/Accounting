@@ -28,7 +28,11 @@ public class Downloadpk extends AbstractWindow {
                 jsonStrBuilder.append(scanner.nextLine());
             }
             newPkId = downloadPKService.downloadPK(jsonStrBuilder.toString());
-            showNotification("Загрузка прошла успешно", NotificationType.HUMANIZED);
+            if (newPkId != null) {
+                showNotification("Загрузка прошла успешно", NotificationType.HUMANIZED);
+            } else {
+                showNotification("Такой ПК уже существует", NotificationType.ERROR);
+            }
         });
 
         uploadFile.addFileUploadErrorListener(event ->

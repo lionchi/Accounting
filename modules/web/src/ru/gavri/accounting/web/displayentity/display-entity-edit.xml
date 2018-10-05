@@ -27,6 +27,7 @@
                 <field property="nameDisplay"/>
                 <field property="diagonal"/>
                 <field property="manufId"/>
+                <field property="displayId"/>
                 <field optionsDatasource="pksDs"
                        property="pk"/>
             </column>
