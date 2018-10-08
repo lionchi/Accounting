@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://loggingScreen"
+        class="ru.gavri.accounting.web.screens.Logging"
+        messagesPack="ru.gavri.accounting.web.screens">
+    <dsContext>
+        <collectionDatasource id="hddEntitiesDs"
+                              allowCommit="false"
+                              class="ru.gavri.accounting.entity.HddEntity"
+                              maxResults="50"
+                              view="hddEntity-view-logging">
+            <query>
+                <![CDATA[select e from accounting$HddEntity e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="hddEntitiesTable"
+            spacing="true">
+        <groupBox id="groupBox"
+                  caption="msg://searchGroupBox"
+                  collapsable="true"
+                  collapsed="true"
+                  spacing="true">
+            <textField id="searchField"
+                       width="100%"/>
+            <button id="searchButton"
+                    caption="msg://searchBut"
+                    invoke="onSearchButtonClick"/>
+        </groupBox>
+        <table id="hddEntitiesTable"
+               height="100px"
+               width="100%">
+            <actions>
+                <action id="refresh"
+                        invoke="onRefresh"/>
+            </actions>
+            <columns>
+                <column id="model"/>
+                <column id="serialNumber"/>
+                <column id="size"/>
+                <column id="isFormatted"/>
+                <column id="dateOfFormatting"/>
+                <column id="pk"/>
+            </columns>
+            <rows datasource="hddEntitiesDs"/>
+            <buttonsPanel>
+                <button id="refreshButton"
+                        action="hddEntitiesTable.refresh"
+                        caption="msg://myRefresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

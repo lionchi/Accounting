@@ -10,5 +10,6 @@
         <class>ru.gavri.accounting.entity.PkEntity</class>
         <class>ru.gavri.accounting.entity.MotherboardEntity</class>
         <class>ru.gavri.accounting.entity.VideoCardEntity</class>
+        <class>ru.gavri.accounting.entity.PkMovingEntity</class>
     </persistence-unit>
 </persistence>

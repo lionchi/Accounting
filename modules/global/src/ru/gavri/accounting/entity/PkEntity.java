@@ -17,6 +17,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
 import com.haulmont.cuba.core.global.DeletePolicy;
 import javax.validation.constraints.NotNull;
+import com.haulmont.chile.core.annotations.Composition;
 
 @NamePattern("%s (%s)|name,modelPk")
 @Table(name = "ACCOUNTING_PK_ENTITY")
@@ -27,6 +28,11 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "UUID")
     protected UUID uuid;
 
+
+    @Composition
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "pkEntity")
+    protected List<PkMovingEntity> pkMovings;
 
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @OneToMany(mappedBy = "pkEntity")
@@ -82,6 +88,20 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pk")
     protected MotherboardEntity motherboardEntity;
+
+
+
+
+
+
+    public void setPkMovings(List<PkMovingEntity> pkMovings) {
+        this.pkMovings = pkMovings;
+    }
+
+    public List<PkMovingEntity> getPkMovings() {
+        return pkMovings;
+    }
+
 
     public void setVideoCards(List<VideoCardEntity> videoCards) {
         this.videoCards = videoCards;

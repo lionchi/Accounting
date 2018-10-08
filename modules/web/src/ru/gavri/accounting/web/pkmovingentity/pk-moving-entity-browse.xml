@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.gavri.accounting.web.pkmovingentity.PkMovingEntityBrowse"
+        focusComponent="pkMovingEntitiesTable"
+        lookupComponent="pkMovingEntitiesTable"
+        messagesPack="ru.gavri.accounting.web.pkmovingentity">
+    <dsContext>
+        <groupDatasource id="pkMovingEntitiesDs"
+                         class="ru.gavri.accounting.entity.PkMovingEntity"
+                         view="pkMovingEntity-view">
+            <query>
+                <![CDATA[select e from accounting$PkMovingEntity e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="pkMovingEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="pkMovingEntitiesTable"
+                datasource="pkMovingEntitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="pkMovingEntitiesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="pkEntity"/>
+                <column id="currentLocation"/>
+                <column id="targetLocation"/>
+                <column id="target"/>
+                <column id="dateMoving"/>
+            </columns>
+            <rows datasource="pkMovingEntitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="pkMovingEntitiesTable.refresh"/>
+                <button id="createBtn"
+                        action="pkMovingEntitiesTable.create"/>
+                <button id="editBtn"
+                        action="pkMovingEntitiesTable.edit"/>
+                <button id="removeBtn"
+                        action="pkMovingEntitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

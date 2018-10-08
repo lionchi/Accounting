@@ -21,6 +21,8 @@
                         property="cpu"/>
             <datasource id="motherboardEntityDs"
                         property="motherboardEntity"/>
+            <collectionDatasource id="pkMovingsDs"
+                                  property="pkMovings"/>
         </datasource>
     </dsContext>
     <dialogMode height="600"
@@ -95,6 +97,32 @@
                                        property="versionBios"/>
                             </column>
                         </fieldGroup>
+                    </tab>
+                    <tab id="tabMoving"
+                         caption="msg://tabMoving"
+                         margin="true,false,false,false"
+                         spacing="true">
+                        <table id="pkMovingsTable"
+                               height="100px"
+                               width="100%">
+                            <actions>
+                                <action id="create"/>
+                                <action id="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="target"/>
+                                <column id="currentLocation"/>
+                                <column id="targetLocation"/>
+                                <column id="dateMoving"/>
+                            </columns>
+                            <rows datasource="pkMovingsDs"/>
+                            <buttonsPanel>
+                                <button id="createButton"
+                                        action="pkMovingsTable.create"/>
+                                <button id="removeButton"
+                                        action="pkMovingsTable.remove"/>
+                            </buttonsPanel>
+                        </table>
                     </tab>
                 </tabSheet>
             </split>

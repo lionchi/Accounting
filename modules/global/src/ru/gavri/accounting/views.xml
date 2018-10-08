@@ -43,6 +43,7 @@
         <property name="dateOfFormatting"/>
         <property name="pk"
                   view="_minimal"/>
+        <property name="serialNumber"/>
     </view>
     <view class="ru.gavri.accounting.entity.MotherboardEntity"
           extends="_local"
@@ -91,6 +92,7 @@
         <property name="hardDisks"
                   view="_minimal">
             <property name="size"/>
+            <property name="isFormatted"/>
         </property>
         <property name="networkInterfaces"
                   view="_minimal">
@@ -109,6 +111,36 @@
             <property name="physicalProcessorCount"/>
             <property name="identifier"/>
             <property name="processorID"/>
+        </property>
+        <property name="pkMovings"
+                  view="_minimal">
+            <property name="target"/>
+        </property>
+    </view>
+    <view class="ru.gavri.accounting.entity.PkMovingEntity"
+          extends="_local"
+          name="pkMovingEntity-view">
+        <property name="pkEntity"
+                  view="_minimal">
+            <property name="location"/>
+            <property name="hardDisks"
+                      view="_minimal">
+                <property name="isFormatted"/>
+            </property>
+        </property>
+    </view>
+    <view class="ru.gavri.accounting.entity.PkEntity"
+          name="pkEntity-for-moving-view">
+        <property name="modelPk"/>
+        <property name="serialNumberPk"/>
+        <property name="manufacture"/>
+        <property name="location"/>
+        <property name="inventoryNumber"/>
+        <property name="isLaptop"/>
+        <property name="name"/>
+        <property name="hardDisks"
+                  view="_minimal">
+            <property name="isFormatted"/>
         </property>
     </view>
 </views>

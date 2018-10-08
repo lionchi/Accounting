@@ -11,9 +11,9 @@
             <item screen="accounting$DisplayEntity.browse"/>
             <item screen="accounting$NetworkInterfaceEntity.browse"/>
         </menu>
+        <item screen="accounting$PkMovingEntity.browse"/>
+        <item screen="logging"/>
     </menu>
-    <menu id="application-logging"
-          insertBefore="administration"/>
     <menu id="application-download"
           insertBefore="administration">
         <item screen="downloadPK"/>

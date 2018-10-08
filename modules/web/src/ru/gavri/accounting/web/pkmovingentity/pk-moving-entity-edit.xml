@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.gavri.accounting.web.pkmovingentity.PkMovingEntityEdit"
+        datasource="pkMovingEntityDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.gavri.accounting.web.pkmovingentity">
+    <dsContext>
+        <datasource id="pkMovingEntityDs"
+                    class="ru.gavri.accounting.entity.PkMovingEntity"
+                    view="pkMovingEntity-view">
+            <datasource id="pkEntityDs"
+                        property="pkEntity"/>
+        </datasource>
+        <collectionDatasource id="pksDs"
+                              class="ru.gavri.accounting.entity.PkEntity"
+                              view="pkEntity-for-moving-view">
+            <query>
+                <![CDATA[select e from accounting$PkEntity e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="pkMovingEntityDs">
+            <column width="250px">
+                <field optionsDatasource="pksDs"
+                       property="pkEntity"/>
+                <field property="target"/>
+                <field property="currentLocation"/>
+                <field property="targetLocation"/>
+                <field property="dateMoving"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

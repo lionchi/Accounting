@@ -102,3 +102,17 @@ create table ACCOUNTING_VIDEO_CARD_ENTITY (
     primary key (ID)
 )^
 -- end ACCOUNTING_VIDEO_CARD_ENTITY
+-- begin ACCOUNTING_PK_MOVING_ENTITY
+create table ACCOUNTING_PK_MOVING_ENTITY (
+    ID bigint,
+    UUID varchar(32),
+    --
+    TARGET integer,
+    CURRENT_LOCATION varchar(100) not null,
+    TARGET_LOCATION varchar(100) not null,
+    DATE_MOVING date not null,
+    PK_ENTITY_ID bigint,
+    --
+    primary key (ID)
+)^
+-- end ACCOUNTING_PK_MOVING_ENTITY

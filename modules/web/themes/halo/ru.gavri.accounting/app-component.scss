@@ -1,0 +1,5 @@
+@import "halo-ext";
+
+@mixin ru_gavri_accounting {
+  @include ru_gavri_accounting-halo-ext;
+}

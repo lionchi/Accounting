@@ -106,4 +106,18 @@ public class PkEntityEdit extends AbstractEditor<PkEntity> {
         textField.setStyleName(HaloTheme.TEXTAREA_BORDERLESS);
         return textField;
     }
+
+    public Component generateCurrentLocationField(Datasource datasource, String fieldId) {
+        TextField textField = componentsFactory.createComponent(TextField.class);
+        textField.setDatasource(datasource, fieldId);
+        textField.setStyleName(HaloTheme.TEXTAREA_BORDERLESS);
+        return textField;
+    }
+
+    public Component generateTargetLocationField(Datasource datasource, String fieldId) {
+        TextField textField = componentsFactory.createComponent(TextField.class);
+        textField.setDatasource(datasource, fieldId);
+        textField.setStyleName(HaloTheme.TEXTAREA_BORDERLESS);
+        return textField;
+    }
 }

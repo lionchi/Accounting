@@ -30,4 +30,10 @@
             template="ru/gavri/accounting/web/videocardentity/video-card-entity-browse.xml"/>
     <screen id="accounting$VideoCardEntity.edit"
             template="ru/gavri/accounting/web/videocardentity/video-card-entity-edit.xml"/>
+    <screen id="accounting$PkMovingEntity.browse"
+            template="ru/gavri/accounting/web/pkmovingentity/pk-moving-entity-browse.xml"/>
+    <screen id="accounting$PkMovingEntity.edit"
+            template="ru/gavri/accounting/web/pkmovingentity/pk-moving-entity-edit.xml"/>
+    <screen id="logging"
+            template="ru/gavri/accounting/web/screens/logging.xml"/>
 </screen-config>

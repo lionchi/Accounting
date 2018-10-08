@@ -1,0 +1,15 @@
+@import "halo-defaults";
+@import "ru.gavri.accounting/halo-ext-defaults";
+@import "app-components";
+@import "ru.gavri.accounting/halo-ext";
+
+.halo {
+  // include auto-generated app components SCSS
+  @include app_components;
+  
+  @include ru_gavri_accounting-halo-ext;
+
+  .no-formatted {
+    background-color: red;
+  }
+}
