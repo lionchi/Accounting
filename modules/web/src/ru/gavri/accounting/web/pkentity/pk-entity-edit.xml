@@ -8,35 +8,174 @@
     <dsContext>
         <datasource id="pkEntityDs"
                     class="ru.gavri.accounting.entity.PkEntity"
-                    view="pkEntity-view"/>
-        <collectionDatasource id="motherboardEntitiesDs"
-                              class="ru.gavri.accounting.entity.MotherboardEntity"
-                              view="_minimal">
-            <query>
-                <![CDATA[select e from accounting$MotherboardEntity e]]>
-            </query>
-        </collectionDatasource>
+                    view="pkEntity-all-view">
+            <collectionDatasource id="videoCardsDs"
+                                  property="videoCards"/>
+            <collectionDatasource id="hardDisksDs"
+                                  property="hardDisks"/>
+            <collectionDatasource id="displaysDs"
+                                  property="displays"/>
+            <collectionDatasource id="networkInterfacesDs"
+                                  property="networkInterfaces"/>
+            <datasource id="cpuDs"
+                        property="cpu"/>
+            <datasource id="motherboardEntityDs"
+                        property="motherboardEntity"/>
+        </datasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
-            spacing="true">
-        <fieldGroup id="fieldGroup"
-                    datasource="pkEntityDs">
-            <column width="250px">
-                <field property="name"/>
-                <field property="modelPk"/>
-                <field property="manufacture"/>
-                <field property="inventoryNumber"/>
-                <field property="serialNumberPk"/>
-                <field property="location"/>
-                <field property="isLaptop"/>
-                <field optionsDatasource="motherboardEntitiesDs"
-                       property="motherboardEntity"/>
-                <field property="cpu"/>
-            </column>
-        </fieldGroup>
-        <frame id="windowActions"
-               screen="editWindowActions"/>
+    <layout spacing="true">
+        <scrollBox height="100%"
+                   spacing="true">
+            <split id="split"
+                   dockable="true"
+                   height="100%"
+                   orientation="horizontal"
+                   width="100%">
+                <fieldGroup id="fieldGroup"
+                            datasource="pkEntityDs">
+                    <column width="250px">
+                        <field property="name"/>
+                        <field property="modelPk"/>
+                        <field property="manufacture"/>
+                        <field property="inventoryNumber"/>
+                        <field property="serialNumberPk"/>
+                        <field property="location"/>
+                        <field property="isLaptop"/>
+                        <field property="motherboardEntity"/>
+                        <field property="cpu"/>
+                    </column>
+                </fieldGroup>
+                <tabSheet>
+                    <tab id="tabCpu"
+                         caption="msg://TabCpu"
+                         margin="true,false,false,false"
+                         spacing="true">
+                        <fieldGroup id="fieldGroupCpu">
+                            <column width="500px">
+                                <field datasource="cpuDs"
+                                       editable="false"
+                                       generator="generateNameCpuField"
+                                       property="nameCpu"/>
+                                <field datasource="cpuDs"
+                                       editable="false"
+                                       generator="generateIdentifierField"
+                                       property="identifier"/>
+                                <field datasource="cpuDs"
+                                       editable="false"
+                                       generator="generateProcessorIDField"
+                                       property="processorID"/>
+                                <field datasource="cpuDs"
+                                       editable="false"
+                                       generator="generateLogicalProcessorCountField"
+                                       property="logicalProcessorCount"/>
+                                <field datasource="cpuDs"
+                                       editable="false"
+                                       generator="generatePhysicalProcessorCountField"
+                                       property="physicalProcessorCount"/>
+                            </column>
+                        </fieldGroup>
+                    </tab>
+                    <tab id="tabMotherboard"
+                         caption="msg://Tab"
+                         margin="true,false,false,false"
+                         spacing="true">
+                        <fieldGroup id="fieldGroupMotherboard"
+                                    datasource="motherboardEntityDs">
+                            <column width="500px">
+                                <field editable="false"
+                                       generator="generateMotherboardManufacturerField"
+                                       property="motherboardManufacturer"/>
+                                <field editable="false"
+                                       generator="generateMotherboardSerialNumberField"
+                                       property="motherboardSerialNumber"/>
+                                <field editable="false"
+                                       generator="generateVersionBiosField"
+                                       property="versionBios"/>
+                            </column>
+                        </fieldGroup>
+                    </tab>
+                </tabSheet>
+            </split>
+            <groupBox id="groupMainBox"
+                      caption="msg://accessories"
+                      collapsable="true"
+                      collapsed="true"
+                      spacing="true">
+                <groupBox id="groupVideoCardBox"
+                          caption="msg://videoCard"
+                          collapsable="true"
+                          collapsed="true"
+                          spacing="true">
+                    <table id="videoCardsTable"
+                           height="100px"
+                           width="100%">
+                        <columns>
+                            <column id="cardName"/>
+                            <column id="currentMode"/>
+                            <column id="driverVersion"/>
+                            <column id="deviceProblemCode"/>
+                            <column id="chipType"/>
+                            <column id="deviceKey"/>
+                        </columns>
+                        <rows datasource="videoCardsDs"/>
+                    </table>
+                </groupBox>
+                <groupBox id="groupHddBox"
+                          caption="msg://hardDisk"
+                          collapsable="true"
+                          collapsed="true"
+                          spacing="true">
+                    <table id="hardDisksTable"
+                           height="100px"
+                           width="100%">
+                        <columns>
+                            <column id="model"/>
+                            <column id="serialNumber"/>
+                            <column id="size"/>
+                        </columns>
+                        <rows datasource="hardDisksDs"/>
+                    </table>
+                </groupBox>
+                <groupBox id="groupDisplayBox"
+                          caption="msg://diplays"
+                          collapsable="true"
+                          collapsed="true"
+                          spacing="true">
+                    <table id="displaysTable"
+                           height="100px"
+                           width="100%">
+                        <columns>
+                            <column id="displayId"/>
+                            <column id="manufId"/>
+                            <column id="nameDisplay"/>
+                            <column id="diagonal"/>
+                        </columns>
+                        <rows datasource="displaysDs"/>
+                    </table>
+                </groupBox>
+                <groupBox id="groupNetBox"
+                          caption="msg://networkInterface"
+                          collapsable="true"
+                          collapsed="true"
+                          spacing="true">
+                    <table id="networkInterfacesTable"
+                           height="100px"
+                           width="100%">
+                        <columns>
+                            <column id="nameInterface"/>
+                            <column id="macAddress"/>
+                            <column id="ipv4"/>
+                            <column id="traffic"/>
+                        </columns>
+                        <rows datasource="networkInterfacesDs"/>
+                    </table>
+                </groupBox>
+            </groupBox>
+            <frame id="windowActions"
+                   height="100%"
+                   screen="editWindowActions"/>
+        </scrollBox>
     </layout>
 </window>

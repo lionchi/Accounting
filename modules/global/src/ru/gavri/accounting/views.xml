@@ -71,4 +71,44 @@
         <property name="pkEntity"
                   view="_minimal"/>
     </view>
+    <view class="ru.gavri.accounting.entity.PkEntity"
+          extends="_local"
+          name="pkEntity-all-view">
+        <property name="videoCards"
+                  view="_minimal">
+            <property name="currentMode"/>
+            <property name="driverVersion"/>
+            <property name="deviceProblemCode"/>
+            <property name="chipType"/>
+            <property name="deviceKey"/>
+        </property>
+        <property name="displays"
+                  view="_minimal">
+            <property name="displayId"/>
+            <property name="manufId"/>
+            <property name="diagonal"/>
+        </property>
+        <property name="hardDisks"
+                  view="_minimal">
+            <property name="size"/>
+        </property>
+        <property name="networkInterfaces"
+                  view="_minimal">
+            <property name="macAddress"/>
+            <property name="ipv4"/>
+            <property name="traffic"/>
+        </property>
+        <property name="motherboardEntity"
+                  view="_minimal">
+            <property name="versionBios"/>
+            <property name="motherboardSerialNumber"/>
+        </property>
+        <property name="cpu"
+                  view="_minimal">
+            <property name="logicalProcessorCount"/>
+            <property name="physicalProcessorCount"/>
+            <property name="identifier"/>
+            <property name="processorID"/>
+        </property>
+    </view>
 </views>
