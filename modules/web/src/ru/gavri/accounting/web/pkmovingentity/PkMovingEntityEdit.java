@@ -8,6 +8,7 @@ import com.haulmont.cuba.gui.data.Datasource;
 import ru.gavri.accounting.entity.HddEntity;
 import ru.gavri.accounting.entity.PkEntity;
 import ru.gavri.accounting.entity.PkMovingEntity;
+import ru.gavri.accounting.entity.Target;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -43,11 +44,13 @@ public class PkMovingEntityEdit extends AbstractEditor<PkMovingEntity> {
     @Override
     protected boolean preCommit() {
         PkMovingEntity item = getItem();
-        List<HddEntity> hardDisks = item.getPkEntity().getHardDisks();
-        boolean result = hardDisks.stream().allMatch(HddEntity::getIsFormatted);
-        if (!result) {
-            showNotification("Перед перемещение необходимо удалить всю информацию, находящуюся на жестких носителях ПК", NotificationType.WARNING);
-            return false;
+        if (!item.getTarget().equals(Target.REPAIRS) && !item.getTarget().equals(Target.INTO_OPERATION)) {
+            List<HddEntity> hardDisks = item.getPkEntity().getHardDisks();
+            boolean result = hardDisks.stream().allMatch(HddEntity::getIsFormatted);
+            if (!result) {
+                showNotification("Перед перемещение необходимо удалить всю информацию, находящуюся на жестких носителях ПК", NotificationType.WARNING);
+                return false;
+            }
         }
         return true;
     }
