@@ -1,6 +1,5 @@
 package ru.gavri.accounting.web.screens;
 
-import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.components.AbstractWindow;
 import com.haulmont.cuba.gui.components.Button;
 import com.haulmont.cuba.gui.components.FileUploadField;
@@ -76,6 +75,7 @@ public class Downloadpk extends AbstractWindow {
         if(!result) {
             showNotification("Нарушена целостность файла", NotificationType.TRAY);
         }
+        showNotification("Целостность не нарушена", NotificationType.TRAY);
         map.put(file.getName(),result);
     }
 }
