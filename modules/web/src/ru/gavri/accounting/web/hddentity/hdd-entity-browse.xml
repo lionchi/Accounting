@@ -26,6 +26,7 @@
         <groupTable id="hddEntitiesTable"
                     width="100%">
             <actions>
+                <action id="refresh"/>
                 <action id="create"/>
                 <action id="edit"/>
                 <action id="remove"/>
@@ -41,6 +42,8 @@
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
+                <button id="refreshButton"
+                        action="hddEntitiesTable.refresh"/>
                 <button id="createBtn"
                         action="hddEntitiesTable.create"/>
                 <button id="editBtn"

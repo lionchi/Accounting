@@ -48,10 +48,10 @@ public class PkMovingEntityEdit extends AbstractEditor<PkMovingEntity> {
             List<HddEntity> hardDisks = item.getPkEntity().getHardDisks();
             boolean result = hardDisks.stream().allMatch(HddEntity::getIsFormatted);
             if (!result) {
-                showNotification("Перед перемещение необходимо удалить всю информацию, находящуюся на жестких носителях ПК", NotificationType.WARNING);
-                return false;
+                showNotification("Необходимо форматирование информационных носителей перед перемещение." + "\r\n" +
+                        "Информационные носители текущего ПК помещены в список 'Перемещаемые неотформатированные hdd'", NotificationType.WARNING);
             }
         }
-        return true;
+        return super.preCommit();
     }
 }

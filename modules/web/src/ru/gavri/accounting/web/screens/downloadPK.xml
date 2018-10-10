@@ -5,9 +5,26 @@
         messagesPack="ru.gavri.accounting.web.screens">
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true">
-        <upload id="uploadFile"
-                showClearButton="true"
-                showFileName="true"/>
+    <layout margin="true"
+            spacing="true">
+        <groupBox id="groupBox"
+                  expand="pathFileField"
+                  showAsPanel="true"
+                  spacing="true">
+            <textField id="pathFileField"
+                       caption="msg://pathFile"
+                       width="100%"/>
+            <buttonsPanel id="buttonsPanel">
+                <button id="checkButton"
+                        caption="msg://checkButton"
+                        invoke="onCheckButtonClick"/>
+                <button id="clearButton"
+                        caption="msg://clearButton"
+                        invoke="onClearButtonClick"/>
+            </buttonsPanel>
+            <upload id="uploadFile"
+                    showClearButton="true"
+                    showFileName="true"/>
+        </groupBox>
     </layout>
 </window>

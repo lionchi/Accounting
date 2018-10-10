@@ -21,6 +21,8 @@
                 <field property="serialNumber"/>
                 <field property="size"/>
                 <field property="isFormatted"/>
+                <field mask="##.##.####"
+                       property="dateOfFormatting"/>
                 <field property="pk"/>
             </column>
         </fieldGroup>

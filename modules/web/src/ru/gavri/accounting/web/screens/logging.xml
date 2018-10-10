@@ -10,18 +10,24 @@
                               maxResults="50"
                               view="hddEntity-view-logging">
             <query>
-                <![CDATA[select e from accounting$HddEntity e]]>
+                <![CDATA[select e from accounting$HddEntity e where e.pk.pkMovings is not empty 
+and e.isFormatted = false
+]]>
             </query>
+            <datasource id="pkDs"
+                        property="pk">
+                <collectionDatasource id="pkMovingsDs"
+                                      property="pkMovings"/>
+            </datasource>
         </collectionDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="hddEntitiesTable"
             spacing="true">
-        <groupBox id="groupBox"
+        <groupBox id="groupSearchBox"
                   caption="msg://searchGroupBox"
                   collapsable="true"
-                  collapsed="true"
                   spacing="true">
             <textField id="searchField"
                        width="100%"/>
@@ -31,6 +37,7 @@
         </groupBox>
         <table id="hddEntitiesTable"
                height="100px"
+               multiLineCells="true"
                width="100%">
             <actions>
                 <action id="refresh"
@@ -43,6 +50,10 @@
                 <column id="isFormatted"/>
                 <column id="dateOfFormatting"/>
                 <column id="pk"/>
+                <column id="pk.pkMovings"
+                        caption="msg://currentMovining"
+                        collapsed="true"
+                        maxTextLength="500"/>
             </columns>
             <rows datasource="hddEntitiesDs"/>
             <buttonsPanel>

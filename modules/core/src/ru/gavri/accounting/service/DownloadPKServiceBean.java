@@ -41,6 +41,41 @@ public class DownloadPKServiceBean implements DownloadPKService {
         return null;
     }
 
+    @Override
+    public boolean checkLabel(String jsonStr, String format) {
+        //Получаем двоичное представление метки
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < jsonStr.length(); i++) {
+            if (jsonStr.charAt(i) == ':' && jsonStr.charAt(i + 1) == ' ' && jsonStr.charAt(i + 2) == ' ') {
+                stringBuilder.append("1");
+            } else if (jsonStr.charAt(i) == ':' && jsonStr.charAt(i + 1) == ' ' && jsonStr.charAt(i + 2) != ' ') {
+                stringBuilder.append("0");
+            }
+            if (i + 2 == jsonStr.length()) {
+                break;
+            }
+        }
+        String result = binaryToString(stringBuilder.toString());
+        return result.equals(format);
+    }
+
+    private String binaryToString(String binary) {
+        List<String> sequences = new ArrayList<>();
+        int start = 0, end = 0;
+        for (int i = 0; i < binary.length() / 6; i++) {
+            start = end;
+            end = end + 6;
+            sequences.add(binary.substring(start, end));
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String sequence : sequences) {
+            int ascii = Integer.parseInt(sequence, 2);
+            char character = (char) ascii;
+            sb.append(character);
+        }
+        return sb.toString();
+    }
+
     private Long createEntities(PK pk) {
         try (Transaction transaction = persistence.getTransaction()) {
             EntityManager entityManager = persistence.getEntityManager();
@@ -129,7 +164,7 @@ public class DownloadPKServiceBean implements DownloadPKService {
         ArrayList<HddEntity> hddEntities = new ArrayList<>();
         for (HDD hdd : hdds) {
             HddEntity hddEntity;
-            if ((hddEntity = checkExistHddEntity(hdd.getSerialNumber(), newPk)) != null) {
+            if ((hddEntity = checkExistHddEntity(hdd.getSerialNumber(), hdd, newPk)) != null) {
                 hddEntities.add(hddEntity);
             } else {
                 hddEntity = metadata.create(HddEntity.class);
@@ -237,7 +272,7 @@ public class DownloadPKServiceBean implements DownloadPKService {
         }
     }
 
-    private HddEntity checkExistHddEntity(String serialNumber, PkEntity pkEntity) {
+    private HddEntity checkExistHddEntity(String serialNumber, HDD hdd, PkEntity pkEntity) {
         try (Transaction transaction = persistence.getTransaction()) {
             EntityManager entityManager = persistence.getEntityManager();
             HddEntity hddEntity = entityManager.createQuery("select h from accounting$HddEntity h where h.serialNumber = :serialNumber", HddEntity.class)
@@ -245,6 +280,8 @@ public class DownloadPKServiceBean implements DownloadPKService {
                     .getFirstResult();
             if (hddEntity != null) {
                 hddEntity.setPk(pkEntity);
+                hddEntity.setIsFormatted(hdd.isFormatted());
+                hdd.setDateOfFormatting(hdd.getDateOfFormatting());
             }
             transaction.commit();
             return hddEntity;
