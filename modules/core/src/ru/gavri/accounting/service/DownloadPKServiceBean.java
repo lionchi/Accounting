@@ -56,7 +56,7 @@ public class DownloadPKServiceBean implements DownloadPKService {
             }
         }
         String result = binaryToString(stringBuilder.toString());
-        return result.equals(format);
+        return result.replace("\u0000", "").equals(format);
     }
 
     private String binaryToString(String binary) {
