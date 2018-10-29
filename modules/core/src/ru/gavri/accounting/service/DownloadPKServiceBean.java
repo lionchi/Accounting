@@ -185,15 +185,20 @@ public class DownloadPKServiceBean implements DownloadPKService {
                                                                          EntityManager entityManager, PkEntity newPk) {
         ArrayList<NetworkInterfaceEntity> networkInterfaceEntities = new ArrayList<>();
         for (NetworkInterface networkInterface : interfaces) {
-            NetworkInterfaceEntity networkInterfaceEntity = metadata.create(NetworkInterfaceEntity.class);
-            networkInterfaceEntity.setIpv4(networkInterface.getIpv4());
-            networkInterfaceEntity.setIpv6(networkInterface.getIpv6());
-            networkInterfaceEntity.setMacAddress(networkInterface.getMacAddress());
-            networkInterfaceEntity.setNameInterface(networkInterface.getName());
-            networkInterfaceEntity.setTraffic(networkInterface.getTraffic());
-            networkInterfaceEntity.setPk(newPk);
-            entityManager.persist(networkInterfaceEntity);
-            networkInterfaceEntities.add(networkInterfaceEntity);
+            NetworkInterfaceEntity networkInterfaceEntity;
+            if ((networkInterfaceEntity = checkExistNetworkInterface(networkInterface.getMacAddress(), newPk)) != null) {
+                networkInterfaceEntities.add(networkInterfaceEntity);
+            } else {
+                networkInterfaceEntity = metadata.create(NetworkInterfaceEntity.class);
+                networkInterfaceEntity.setIpv4(networkInterface.getIpv4());
+                networkInterfaceEntity.setIpv6(networkInterface.getIpv6());
+                networkInterfaceEntity.setMacAddress(networkInterface.getMacAddress());
+                networkInterfaceEntity.setNameInterface(networkInterface.getName().replaceAll("\r\n", ""));
+                networkInterfaceEntity.setTraffic(networkInterface.getTraffic().replaceAll("\r\n", ""));
+                networkInterfaceEntity.setPk(newPk);
+                entityManager.persist(networkInterfaceEntity);
+                networkInterfaceEntities.add(networkInterfaceEntity);
+            }
         }
         return networkInterfaceEntities;
     }
@@ -299,6 +304,20 @@ public class DownloadPKServiceBean implements DownloadPKService {
             }
             transaction.commit();
             return displayEntity;
+        }
+    }
+
+    private NetworkInterfaceEntity checkExistNetworkInterface(String mac, PkEntity pkEntity) {
+        try (Transaction transaction = persistence.getTransaction()) {
+            EntityManager entityManager = persistence.getEntityManager();
+            NetworkInterfaceEntity networkInterfaceEntity = entityManager.createQuery("select n from accounting$NetworkInterfaceEntity n where n.macAddress = :mac", NetworkInterfaceEntity.class)
+                    .setParameter("mac", mac)
+                    .getFirstResult();
+            if (networkInterfaceEntity != null) {
+                networkInterfaceEntity.setPk(pkEntity);
+            }
+            transaction.commit();
+            return networkInterfaceEntity;
         }
     }
 }
