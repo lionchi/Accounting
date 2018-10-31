@@ -44,6 +44,7 @@
                         <field property="inventoryNumber"/>
                         <field property="serialNumberPk"/>
                         <field property="location"/>
+                        <field property="ram"/>
                         <field property="isLaptop"/>
                         <field property="motherboardEntity"/>
                         <field property="cpu"/>

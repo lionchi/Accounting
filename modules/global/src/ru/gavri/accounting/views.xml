@@ -27,7 +27,10 @@
         <property name="size"/>
         <property name="isFormatted"/>
         <property name="pk"
-                  view="_minimal"/>
+                  view="_minimal">
+            <property name="pkMovings"
+                      view="_minimal"/>
+        </property>
         <property name="dateOfFormatting"/>
     </view>
     <view class="ru.gavri.accounting.entity.NetworkInterfaceEntity"

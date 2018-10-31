@@ -26,6 +26,12 @@
                 <field property="pk"/>
             </column>
         </fieldGroup>
+        <groupBox id="groupBox"
+                  spacing="true"
+                  width="300px">
+            <frame id="frame"
+                   screen="procActionsFrame"/>
+        </groupBox>
         <frame id="windowActions"
                screen="editWindowActions"/>
     </layout>

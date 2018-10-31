@@ -61,6 +61,7 @@ create table ACCOUNTING_PK_ENTITY (
     ID bigint,
     UUID varchar(32),
     --
+    RAM varchar(10),
     MODEL_PK varchar(50),
     SERIAL_NUMBER_PK varchar(100),
     MANUFACTURE varchar(255),

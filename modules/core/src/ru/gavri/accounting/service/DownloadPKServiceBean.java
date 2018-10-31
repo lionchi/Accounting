@@ -88,6 +88,7 @@ public class DownloadPKServiceBean implements DownloadPKService {
             newPk.setModelPk(pk.getModelPk());
             newPk.setSerialNumberPk(pk.getSerialNumberPk().equals("Default string") ? "" : pk.getSerialNumberPk());
             newPk.setManufacture(pk.getManufacture());
+            newPk.setRam(pk.getRam());
             //Создание МП
             MotherboardEntity motherboardEntity;
             if ((motherboardEntity = checkExistMotherboardEntity(pk.getMotherboardSerialNumber(), newPk)) != null) {

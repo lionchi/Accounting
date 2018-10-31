@@ -18,6 +18,7 @@ public class PK {
     private String nameHost;
     private String nameDomain;
     private String dnsServers;
+    private String ram;
     private CPU cpu;
     private ArrayList<HDD> hardDisks;
     private ArrayList<NetworkInterface> networkInterfaces;
@@ -177,5 +178,9 @@ public class PK {
 
     public void setVideoCards(ArrayList<VideoCard> videoCards) {
         this.videoCards = videoCards;
+    }
+
+    public String getRam() {
+        return ram;
     }
 }

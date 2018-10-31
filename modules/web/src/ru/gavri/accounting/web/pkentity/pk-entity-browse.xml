@@ -41,6 +41,7 @@
                 <column id="isLaptop"/>
                 <column id="motherboardEntity"/>
                 <column id="cpu"/>
+                <column id="ram"/>
             </columns>
             <rows datasource="pkEntitiesDs"/>
             <rowsCount/>

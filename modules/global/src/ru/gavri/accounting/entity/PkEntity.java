@@ -29,6 +29,9 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
     protected UUID uuid;
 
 
+    @Column(name = "RAM", length = 10)
+    protected String ram;
+
     @Composition
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "pkEntity")
@@ -92,6 +95,15 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
 
 
 
+
+
+    public void setRam(String ram) {
+        this.ram = ram;
+    }
+
+    public String getRam() {
+        return ram;
+    }
 
 
     public void setPkMovings(List<PkMovingEntity> pkMovings) {
