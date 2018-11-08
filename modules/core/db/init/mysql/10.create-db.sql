@@ -8,6 +8,7 @@ create table ACCOUNTING_CPU_ENTITY (
     PHYSICAL_PROCESSOR_COUNT integer,
     IDENTIFIER varchar(100),
     PROCESSOR_ID varchar(100),
+    PK_ID bigint,
     --
     primary key (ID)
 )^
@@ -68,7 +69,6 @@ create table ACCOUNTING_PK_ENTITY (
     LOCATION varchar(100),
     INVENTORY_NUMBER varchar(100) not null,
     IS_LAPTOP boolean,
-    CPU_ID bigint,
     NAME varchar(100),
     --
     primary key (ID)

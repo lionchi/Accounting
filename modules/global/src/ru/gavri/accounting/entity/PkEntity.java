@@ -65,8 +65,7 @@ public class PkEntity extends BaseLongIdEntity implements HasUuid {
 
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CPU_ID")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "pk")
     protected CpuEntity cpu;
 
     @OnDeleteInverse(DeletePolicy.UNLINK)

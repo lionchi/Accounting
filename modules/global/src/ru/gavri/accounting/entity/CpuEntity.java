@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
 import com.haulmont.cuba.core.global.DeletePolicy;
+import javax.persistence.JoinColumn;
 
 @NamePattern("%s|nameCpu")
 @Table(name = "ACCOUNTING_CPU_ENTITY")
@@ -38,9 +39,10 @@ public class CpuEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "PROCESSOR_ID", length = 100)
     protected String processorID;
 
+    @JoinColumn(name = "PK_ID")
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "cpu")
+    @OneToOne(fetch = FetchType.LAZY)
     protected PkEntity pk;
 
     public void setNameCpu(String nameCpu) {
