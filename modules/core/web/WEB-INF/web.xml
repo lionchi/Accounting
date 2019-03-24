@@ -8,12 +8,12 @@
         <param-name>appPropertiesConfig</param-name>
         <param-value>classpath:ru/gavri/accounting/app.properties
             /WEB-INF/local.app.properties
-            "file:${catalina.base}/conf/app-core/local.app.properties"</param-value>
+            "file:${catalina.base}/conf/accounting-core/local.app.properties"</param-value>
     </context-param>
     <!--Application components-->
     <context-param>
         <param-name>appComponents</param-name>
-        <param-value>com.haulmont.cuba com.haulmont.bpm</param-value>
+        <param-value>com.haulmont.cuba com.haulmont.bpm de.diedavids.cuba.runtimediagnose</param-value>
     </context-param>
     <listener>
         <listener-class>com.haulmont.cuba.core.sys.AppContextLoader</listener-class>

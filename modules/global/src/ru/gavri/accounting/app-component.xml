@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="de.diedavids.cuba.runtimediagnose, com.haulmont.cuba, com.haulmont.bpm">
+    <module blocks="*"
+            name="global">
+        <artifact appJar="true"
+                  name="accounting-global"/>
+        <property name="cuba.persistenceConfig"
+                  value="+ru/gavri/accounting/persistence.xml"/>
+        <property name="cuba.metadataConfig"
+                  value="+ru/gavri/accounting/metadata.xml"/>
+        <property name="cuba.viewsConfig"
+                  value="+ru/gavri/accounting/views.xml"/>
+    </module>
+    <module blocks="core"
+            dependsOn="global"
+            name="core">
+        <artifact appJar="true"
+                  name="accounting-core"/>
+        <artifact classifier="db"
+                  configuration="dbscripts"
+                  ext="zip"
+                  name="accounting-core"/>
+        <property name="cuba.springContextConfig"
+                  value="+ru/gavri/accounting/spring.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+ru.gavri.accounting.core"/>
+    </module>
+    <module blocks="web"
+            dependsOn="global"
+            name="web">
+        <artifact appJar="true"
+                  name="accounting-web"/>
+        <artifact classifier="web"
+                  configuration="webcontent"
+                  ext="zip"
+                  name="accounting-web"/>
+        <artifact configuration="themes"
+                  name="accounting-web-themes"/>
+        <property name="cuba.springContextConfig"
+                  value="+ru/gavri/accounting/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig"
+                  value="+ru/gavri/accounting/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig"
+                  value="+ru/gavri/accounting/web-screens.xml"/>
+        <property name="cuba.menuConfig"
+                  value="+ru/gavri/accounting/web-menu.xml"/>
+        <property name="cuba.permissionConfig"
+                  value="+ru/gavri/accounting/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+ru.gavri.accounting.web"/>
+    </module>
+    <module name="web-themes">
+        <artifact name="accounting-web-themes"/>
+    </module>
+</app-component>

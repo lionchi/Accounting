@@ -24,9 +24,12 @@ public class PkMovingEntityEdit extends AbstractEditor<PkMovingEntity> {
     private LookupPickerField pkEntityField;
     @Named("fieldGroup.currentLocation")
     private TextField currentLocationField;
+    private Long start;
+    private Long end;
 
     @Override
     public void init(Map<String, Object> params) {
+        start = System.currentTimeMillis();
         pkEntityField.addValueChangeListener(e -> {
             PkEntity pkEntity = (PkEntity) e.getValue();
             currentLocationField.setValue(pkEntity.getLocation());
@@ -52,6 +55,8 @@ public class PkMovingEntityEdit extends AbstractEditor<PkMovingEntity> {
                         "Информационные носители текущего ПК помещены в список 'Перемещаемые неотформатированные hdd'", NotificationType.WARNING);
             }
         }
+        end = System.currentTimeMillis();
+        System.out.println("Время создания перемещения для персонального пк в милисекундах равно " + (end - start));
         return super.preCommit();
     }
 }

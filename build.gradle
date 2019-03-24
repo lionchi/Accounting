@@ -24,7 +24,7 @@ buildscript {
     }
 }
 
-def modulePrefix = 'app'
+def modulePrefix = 'accounting'
 
 def globalModule = project(":${modulePrefix}-global")
 def coreModule = project(":${modulePrefix}-core")
@@ -54,6 +54,7 @@ cuba {
 dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
     appComponent("com.haulmont.bpm:bpm-global:$cubaVersion")
+    appComponent("de.diedavids.cuba.runtimediagnose:runtime-diagnose-global:1.2.0")
 
 }
 
@@ -83,6 +84,13 @@ configure(globalModule) {
     entitiesEnhancing {
         main {
             enabled = true
+        }
+    }
+
+    jar {
+        manifest {
+            attributes('App-Component-Id': cuba.artifact.group)
+            attributes('App-Component-Version': cuba.artifact.version + (cuba.artifact.isSnapshot ? '-SNAPSHOT' : ''))
         }
     }
 
@@ -240,3 +248,19 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
 task wrapper(type: Wrapper) {
     gradleVersion = '4.3.1'
 }
+
+task buildWar(type: CubaWarBuilding) {
+    webXmlPath = 'modules/web/web/WEB-INF/single-war-web.xml' //- для создания единого war клиента и Middleware (при этом singleWar = true или опустить)
+    coreContextXmlPath = 'modules/core/web/META-INF/war-context.xml'
+    includeContextXml = true
+    singleWar = true
+    appProperties = [
+            'cuba.automaticDatabaseUpdate'     : true,
+            'cuba.bruteForceProtection.enabled': true,
+            //'cuba.webPort'                     : 80,
+            'cuba.connectionUrlList'           : 'http://localhost/accounting-core'
+    ]
+    includeJdbcDriver = true
+    appHome = 'accounting_home'
+}
+

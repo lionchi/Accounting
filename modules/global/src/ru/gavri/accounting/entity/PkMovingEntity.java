@@ -29,6 +29,9 @@ public class PkMovingEntity extends BaseLongIdEntity implements HasUuid {
     @Column(name = "UUID")
     protected UUID uuid;
 
+    @Column(name = "APPROVAL")
+    protected Boolean approval;
+
     @Column(name = "TARGET")
     protected Integer target;
 
@@ -56,6 +59,15 @@ public class PkMovingEntity extends BaseLongIdEntity implements HasUuid {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PK_ENTITY_ID")
     protected PkEntity pkEntity;
+
+    public void setApproval(Boolean approval) {
+        this.approval = approval;
+    }
+
+    public Boolean getApproval() {
+        return approval;
+    }
+
 
     public void setPkEntity(PkEntity pkEntity) {
         this.pkEntity = pkEntity;

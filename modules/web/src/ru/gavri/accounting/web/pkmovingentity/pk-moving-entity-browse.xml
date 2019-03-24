@@ -30,6 +30,9 @@
                 <action id="create"/>
                 <action id="edit"/>
                 <action id="remove"/>
+                <action id="approval"
+                        caption="msg://approvalBtn"
+                        invoke="onApproval"/>
             </actions>
             <columns>
                 <column id="pkEntity"/>
@@ -37,6 +40,8 @@
                 <column id="targetLocation"/>
                 <column id="target"/>
                 <column id="dateMoving"/>
+                <column id="approval"
+                        caption="msg://approval"/>
             </columns>
             <rows datasource="pkMovingEntitiesDs"/>
             <rowsCount/>
@@ -50,6 +55,8 @@
                         action="pkMovingEntitiesTable.edit"/>
                 <button id="removeBtn"
                         action="pkMovingEntitiesTable.remove"/>
+                <button id="approvalButton"
+                        action="pkMovingEntitiesTable.approval"/>
             </buttonsPanel>
         </groupTable>
     </layout>

@@ -27,9 +27,12 @@ public class Downloadpk extends AbstractWindow {
 
     private Long newPkId;
     private Map<String, Boolean> map = new HashMap<>();
+    private Long start;
+    private Long end;
 
     @Override
     public void ready() {
+        start = System.currentTimeMillis();
         uploadFile.addFileUploadSucceedListener(event -> {
             if (map.containsKey(uploadFile.getFileName())) {
                 Boolean aBoolean = map.get(uploadFile.getFileName());
@@ -40,6 +43,8 @@ public class Downloadpk extends AbstractWindow {
                         jsonStrBuilder.append(scanner.nextLine());
                     }
                     newPkId = downloadPKService.downloadPK(jsonStrBuilder.toString());
+                    end = System.currentTimeMillis();
+                    System.out.println("Время выгрузки данных из результирующего файла в милисекундах равно " + (end - start));
                     if (newPkId != null) {
                         showNotification("Загрузка прошла успешно", NotificationType.HUMANIZED);
                     } else {
@@ -53,7 +58,6 @@ public class Downloadpk extends AbstractWindow {
             }
 
         });
-
         uploadFile.addFileUploadErrorListener(event ->
                 showNotification("Ошибка при загрузке файла", NotificationType.ERROR));
     }
@@ -101,7 +105,6 @@ public class Downloadpk extends AbstractWindow {
             } else {
                 showNotification(String.format("Целостность файла %s не нарушена", file.getName()), NotificationType.TRAY);
             }
-
             map.put(file.getName(), result);
         }
     }
